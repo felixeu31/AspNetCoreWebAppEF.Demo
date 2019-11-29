@@ -22,7 +22,9 @@ namespace Web.Controllers
         {
             var pajeras = _db.Pajera.AsNoTracking().AsQueryable()
                 .Include(x => x.SubPajeras)
+                    .ThenInclude(x => x.Adjuntos)
                 .Include(x => x.Inspecciones)
+                    .ThenInclude(x => x.Adjuntos)
                 .Include(x => x.Adjuntos);
 
             var adjuntos = _db.Adjunto.AsNoTracking().AsQueryable()
