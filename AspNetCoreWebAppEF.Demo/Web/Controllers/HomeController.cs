@@ -20,14 +20,12 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            var pajeras = _db.Pajera.AsNoTracking().AsQueryable()
+            var pajeras = _db.Pajera.AsQueryable()
                 .Include(x => x.SubPajeras)
-                    .ThenInclude(x => x.Adjuntos)
                 .Include(x => x.Inspecciones)
-                    .ThenInclude(x => x.Adjuntos)
                 .Include(x => x.Adjuntos);
 
-            var adjuntos = _db.Adjunto.AsNoTracking().AsQueryable()
+            var adjuntos = _db.Adjunto.AsQueryable()
                 .Include(x => x.Pajera)
                 .Include(x => x.SubPajera)
                 .Include(x => x.Inspeccion);
